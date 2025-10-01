@@ -1,6 +1,5 @@
 {
   "algorithm" : "AES-SIV-CMAC",
-  "generatorVersion" : "0.8r12",
   "numberOfTests" : 442,
   "header" : [
     "Test vectors of type DaeadTest are intended for verifying",
@@ -8,13 +7,20 @@
     "with additional data."
   ],
   "notes" : {
-    "EdgeCaseSiv" : "The SIV of this test vector has an edge case value. One purpose of these test vectors is to detect implementations where integer overflows of the counter is incorrectly implemented. AES-SIV itself prevents such overflow problems by clearing some msbs in the IV."
+    "EdgeCaseSiv" : {
+      "bugType" : "MISSING_STEP",
+      "description" : "The SIV of this test vector has an edge case value. One purpose of these test vectors is to detect implementations where integer overflows of the counter is incorrectly implemented. AES-SIV itself prevents such overflow problems by clearing some msbs in the IV."
+    }
   },
-  "schema" : "daead_test_schema.json",
+  "schema" : "daead_test_schema_v1.json",
   "testGroups" : [
     {
       "keySize" : 256,
       "type" : "DaeadTest",
+      "source" : {
+        "name" : "google-wycheproof",
+        "version" : "0.8r12"
+      },
       "tests" : [
         {
           "tcId" : 1,
@@ -1412,6 +1418,10 @@
     {
       "keySize" : 384,
       "type" : "DaeadTest",
+      "source" : {
+        "name" : "google-wycheproof",
+        "version" : "0.8r12"
+      },
       "tests" : [
         {
           "tcId" : 149,
@@ -2800,6 +2810,10 @@
     {
       "keySize" : 512,
       "type" : "DaeadTest",
+      "source" : {
+        "name" : "google-wycheproof",
+        "version" : "0.8r12"
+      },
       "tests" : [
         {
           "tcId" : 296,

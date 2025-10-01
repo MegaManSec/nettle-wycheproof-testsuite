@@ -64,10 +64,10 @@ mapping(string:function) algo_functions = ([
 	"RSASSA-PKCS1-v1_5": Standards.PKCS.RSA.parse_public_key,
 
 	/* RsassaPkcs1Generate Tests */
-	"RSASSA-PKCS1-v1_5-GEN": Standards.PKCS.parse_private_key, // NB: Not Standards.PKCS.RSA.parse_private_key.
+	"RSASSA-PKCS1-v1_5": Standards.PKCS.parse_private_key, // NB: Not Standards.PKCS.RSA.parse_private_key.
 
 	/* RsaesPkcs1Decrypt Tests */
-	"RSAES-PKCS1-v1_5-DEC": Standards.PKCS.parse_private_key, // NB: As above.
+	"RSAES-PKCS1-v1_5": Standards.PKCS.parse_private_key, // NB: As above.
 
 ]);
 
@@ -75,8 +75,19 @@ mapping(string:function) algo_functions = ([
  * A list of all the vector files containing the tests.
  * Not all files may be supported.
  */
+/*
+ * A list of all the vector files containing the tests.
+ * Not all files may be supported.
+ */
+/*
+ * A list of all the vector files containing the tests.
+ * Not all files may be supported.
+ */
 constant test_vectors = ({
 	/* AeadTest Tests */
+	"a128cbc_hs256_test.json",
+	"a192cbc_hs384_test.json",
+	"a256cbc_hs512_test.json",
 	"aead_aes_siv_cmac_test.json",
 	"aegis128L_test.json",
 	"aegis128_test.json",
@@ -85,11 +96,29 @@ constant test_vectors = ({
 	"aes_eax_test.json",
 	"aes_gcm_siv_test.json",
 	"aes_gcm_test.json",
+	"aria_ccm_test.json",
+	"aria_gcm_test.json",
+	"ascon128_test.json",
+	"ascon128a_test.json",
+	"ascon80pq_test.json",
+	"camellia_ccm_test.json",
 	"chacha20_poly1305_test.json",
+	"morus1280_test.json",
+	"morus640_test.json",
+	"seed_ccm_test.json",
+	"seed_gcm_test.json",
+	"sm4_ccm_test.json",
+	"sm4_gcm_test.json",
 	"xchacha20_poly1305_test.json",
+
+	/* DaeadTest Tests */
+	"aes_siv_cmac_test.json",
 
 	/* IndCpaTest Tests */
 	"aes_cbc_pkcs5_test.json",
+	"aes_xts_test.json",
+	"aria_cbc_pkcs5_test.json",
+	"camellia_cbc_pkcs5_test.json",
 
 	/* DsaVerify Tests */
 	"dsa_2048_224_sha224_test.json",
@@ -104,31 +133,49 @@ constant test_vectors = ({
 	"dsa_3072_256_sha256_p1363_test.json",
 
 	/* EcdsaVerify Tests */
+	"ecdsa_brainpoolP224r1_sha3_224_test.json",
 	"ecdsa_brainpoolP224r1_sha224_test.json",
 	"ecdsa_brainpoolP256r1_sha256_test.json",
+	"ecdsa_brainpoolP256r1_sha3_256_test.json",
 	"ecdsa_brainpoolP320r1_sha384_test.json",
+	"ecdsa_brainpoolP320r1_sha3_384_test.json",
 	"ecdsa_brainpoolP384r1_sha384_test.json",
+	"ecdsa_brainpoolP384r1_sha3_384_test.json",
 	"ecdsa_brainpoolP512r1_sha512_test.json",
+	"ecdsa_brainpoolP512r1_sha3_512_test.json",
+	"ecdsa_secp160k1_sha256_test.json",
+	"ecdsa_secp160r1_sha256_test.json",
+	"ecdsa_secp160r2_sha256_test.json",
+	"ecdsa_secp192k1_sha256_test.json",
+	"ecdsa_secp192r1_sha256_test.json",
+	"ecdsa_secp224k1_sha224_test.json",
+	"ecdsa_secp224k1_sha256_test.json",
 	"ecdsa_secp224r1_sha224_test.json",
 	"ecdsa_secp224r1_sha256_test.json",
 	"ecdsa_secp224r1_sha3_224_test.json",
 	"ecdsa_secp224r1_sha3_256_test.json",
 	"ecdsa_secp224r1_sha3_512_test.json",
 	"ecdsa_secp224r1_sha512_test.json",
+	"ecdsa_secp224r1_shake128_test.json",
+	"ecdsa_secp256k1_sha256_bitcoin_test.json",
 	"ecdsa_secp256k1_sha256_test.json",
 	"ecdsa_secp256k1_sha3_256_test.json",
 	"ecdsa_secp256k1_sha3_512_test.json",
-	"ecdsa_secp256k1_sha512_test.json",
+	"ecdsa_secp256k1_shake128_test.json",
+	"ecdsa_secp256k1_shake256_test.json",
 	"ecdsa_secp256r1_sha256_test.json",
 	"ecdsa_secp256r1_sha3_256_test.json",
 	"ecdsa_secp256r1_sha3_512_test.json",
+	"ecdsa_secp256r1_shake128_test.json",
 	"ecdsa_secp256r1_sha512_test.json",
-	"ecdsa_secp384r1_sha384_test.json",
+	"ecdsa_secp384r1_sha256_test.json",
 	"ecdsa_secp384r1_sha3_384_test.json",
 	"ecdsa_secp384r1_sha3_512_test.json",
-	"ecdsa_secp384r1_sha512_test.json",
+	"ecdsa_secp384r1_sha384_test.json",
+	"ecdsa_secp384r1_shake256_test.json",
 	"ecdsa_secp521r1_sha3_512_test.json",
 	"ecdsa_secp521r1_sha512_test.json",
+	"ecdsa_secp521r1_shake256_test.json",
 
 	/* EcdsaP1363Verify Tests */
 	"ecdsa_brainpoolP224r1_sha224_p1363_test.json",
@@ -136,20 +183,34 @@ constant test_vectors = ({
 	"ecdsa_brainpoolP320r1_sha384_p1363_test.json",
 	"ecdsa_brainpoolP384r1_sha384_p1363_test.json",
 	"ecdsa_brainpoolP512r1_sha512_p1363_test.json",
+	"ecdsa_secp160k1_sha256_p1363_test.json",
+	"ecdsa_secp160r1_sha256_p1363_test.json",
+	"ecdsa_secp160r2_sha256_p1363_test.json",
+	"ecdsa_secp192k1_sha256_p1363_test.json",
+	"ecdsa_secp192r1_sha256_p1363_test.json",
+	"ecdsa_secp224k1_sha224_p1363_test.json",
+	"ecdsa_secp224k1_sha256_p1363_test.json",
 	"ecdsa_secp224r1_sha224_p1363_test.json",
 	"ecdsa_secp224r1_sha256_p1363_test.json",
 	"ecdsa_secp224r1_sha512_p1363_test.json",
+	"ecdsa_secp224r1_shake128_p1363_test.json",
 	"ecdsa_secp256k1_sha256_p1363_test.json",
 	"ecdsa_secp256k1_sha512_p1363_test.json",
+	"ecdsa_secp256k1_sha512_test.json",
+	"ecdsa_secp256k1_shake128_p1363_test.json",
+	"ecdsa_secp256k1_shake256_p1363_test.json",
 	"ecdsa_secp256r1_sha256_p1363_test.json",
 	"ecdsa_secp256r1_sha512_p1363_test.json",
+	"ecdsa_secp256r1_shake128_p1363_test.json",
 	"ecdsa_secp384r1_sha384_p1363_test.json",
 	"ecdsa_secp384r1_sha512_p1363_test.json",
+	"ecdsa_secp384r1_sha512_test.json",
+	"ecdsa_secp384r1_shake256_p1363_test.json",
 	"ecdsa_secp521r1_sha512_p1363_test.json",
-	"ecdsa_webcrypto_test.json",
+	"ecdsa_secp521r1_shake256_p1363_test.json",
 
 	/* EddsaVerify Tests */
-	"eddsa_test.json",
+	"ed25519_test.json",
 	"ed448_test.json",
 
 	/* EcdhEcpointTest Tests */
@@ -164,30 +225,54 @@ constant test_vectors = ({
 	"ecdh_brainpoolP320r1_test.json",
 	"ecdh_brainpoolP384r1_test.json",
 	"ecdh_brainpoolP512r1_test.json",
+	"ecdh_secp224r1_pem_test.json",
 	"ecdh_secp224r1_test.json",
 	"ecdh_secp256k1_test.json",
+	"ecdh_secp256r1_pem_test.json",
 	"ecdh_secp256r1_test.json",
+	"ecdh_secp384r1_pem_test.json",
 	"ecdh_secp384r1_test.json",
+	"ecdh_secp521r1_pem_test.json",
 	"ecdh_secp521r1_test.json",
-	"ecdh_test.json",
+	"ecdh_sect283k1_test.json",
+	"ecdh_sect283r1_test.json",
+	"ecdh_sect409k1_test.json",
+	"ecdh_sect409r1_test.json",
+	"ecdh_sect571k1_test.json",
+	"ecdh_sect571r1_test.json",
 
 	/* EcdhWebcryptoTest Tests */
-	"ecdh_webcrypto_test.json",
+	"ecdh_secp256k1_webcrypto_test.json",
+	"ecdh_secp256r1_webcrypto_test.json",
+	"ecdh_secp384r1_webcrypto_test.json",
+	"ecdh_secp521r1_webcrypto_test.json",
 
 	/* MacTest Tests */
 	"aes_cmac_test.json",
+	"aria_cmac_test.json",
+	"camellia_cmac_test.json",
 	"hmac_sha1_test.json",
 	"hmac_sha224_test.json",
 	"hmac_sha256_test.json",
 	"hmac_sha384_test.json",
+	"hmac_sha512_224_test.json",
+	"hmac_sha512_256_test.json",
+	"hmac_sha512_test.json",
 	"hmac_sha3_224_test.json",
 	"hmac_sha3_256_test.json",
 	"hmac_sha3_384_test.json",
 	"hmac_sha3_512_test.json",
-	"hmac_sha512_test.json",
+	"hmac_sm3_test.json",
+	"kmac128_no_customization_test.json",
+	"kmac256_no_customization_test.json",
+	"siphash_1_3_test.json",
+	"siphash_2_4_test.json",
+	"siphash_4_8_test.json",
+	"siphashx_2_4_test.json",
+	"siphashx_4_8_test.json",
 
 	/* MacWithIvTest Tests */
-	"gmac_test.json",
+	"aes_gmac_test.json",
 	"vmac_128_test.json",
 	"vmac_64_test.json",
 
@@ -201,8 +286,12 @@ constant test_vectors = ({
 	"hkdf_sha512_test.json",
 
 	/* KeywrapTest Tests */
-	"kw_test.json",
-	"kwp_test.json",
+	"aes_wrap_test.json",
+	"aes_kwp_test.json",
+	"aria_wrap_test.json",
+	"aria_kwp_test.json",
+	"camellia_wrap_test.json",
+	"seed_wrap_test.json",
 
 	/* RsassaPkcs1Verify Tests */
 	"rsa_signature_2048_sha224_test.json",
@@ -222,22 +311,41 @@ constant test_vectors = ({
 	"rsa_signature_3072_sha3_512_test.json",
 	"rsa_signature_3072_sha512_256_test.json",
 	"rsa_signature_3072_sha512_test.json",
+	"rsa_signature_4096_sha256_test.json",
 	"rsa_signature_4096_sha384_test.json",
 	"rsa_signature_4096_sha512_256_test.json",
 	"rsa_signature_4096_sha512_test.json",
-	"rsa_signature_test.json",
+	"rsa_signature_8192_sha256_test.json",
+	"rsa_signature_8192_sha384_test.json",
+	"rsa_signature_8192_sha512_test.json",
 
 	/* RsassaPssVerify Tests */
+	"rsa_pss_2048_sha1_mgf1_20_params_test.json",
 	"rsa_pss_2048_sha1_mgf1_20_test.json",
+	"rsa_pss_2048_sha256_mgf1_0_params_test.json",
 	"rsa_pss_2048_sha256_mgf1_0_test.json",
+	"rsa_pss_2048_sha256_mgf1_32_params_test.json",
 	"rsa_pss_2048_sha256_mgf1_32_test.json",
-	"rsa_pss_2048_sha512_256_mgf1_28_test.json",
+	"rsa_pss_2048_sha256_mgf1sha1_20_test.json",
+	"rsa_pss_2048_sha384_mgf1_48_test.json",
+	"rsa_pss_2048_sha512_224_mgf1_28_test.json",
 	"rsa_pss_2048_sha512_256_mgf1_32_test.json",
+	"rsa_pss_2048_sha512_mgf1sha256_32_params_test.json",
+	"rsa_pss_3072_sha256_mgf1_32_params_test.json",
 	"rsa_pss_3072_sha256_mgf1_32_test.json",
+	"rsa_pss_3072_shake128_test.json",
+	"rsa_pss_2048_shake128_test.json",
+	"rsa_pss_2048_shake256_test.json",
+	"rsa_pss_3072_shake256_test.json",
 	"rsa_pss_4096_sha256_mgf1_32_test.json",
+	"rsa_pss_4096_sha384_mgf1_48_test.json",
+	"rsa_pss_4096_sha512_mgf1_32_params_test.json",
 	"rsa_pss_4096_sha512_mgf1_32_test.json",
+	"rsa_pss_4096_sha512_mgf1_64_params_test.json",
+	"rsa_pss_4096_sha512_mgf1_64_test.json",
+	"rsa_pss_4096_shake256_test.json",
+	"rsa_pss_misc_params_test.json",
 	"rsa_pss_misc_test.json",
-
 
 	/* RsaesOaepDecrypt Tests */
 	"rsa_oaep_2048_sha1_mgf1sha1_test.json",
@@ -247,20 +355,31 @@ constant test_vectors = ({
 	"rsa_oaep_2048_sha256_mgf1sha256_test.json",
 	"rsa_oaep_2048_sha384_mgf1sha1_test.json",
 	"rsa_oaep_2048_sha384_mgf1sha384_test.json",
+	"rsa_oaep_2048_sha512_224_mgf1sha1_test.json",
+	"rsa_oaep_2048_sha512_224_mgf1sha512_224_test.json",
 	"rsa_oaep_2048_sha512_mgf1sha1_test.json",
 	"rsa_oaep_2048_sha512_mgf1sha512_test.json",
 	"rsa_oaep_3072_sha256_mgf1sha1_test.json",
 	"rsa_oaep_3072_sha256_mgf1sha256_test.json",
+	"rsa_oaep_3072_sha512_256_mgf1sha1_test.json",
+	"rsa_oaep_3072_sha512_256_mgf1sha512_256_test.json",
 	"rsa_oaep_3072_sha512_mgf1sha1_test.json",
 	"rsa_oaep_3072_sha512_mgf1sha512_test.json",
 	"rsa_oaep_4096_sha256_mgf1sha1_test.json",
 	"rsa_oaep_4096_sha256_mgf1sha256_test.json",
 	"rsa_oaep_4096_sha512_mgf1sha1_test.json",
 	"rsa_oaep_4096_sha512_mgf1sha512_test.json",
+	"rsa_three_primes_oaep_2048_sha1_mgf1sha1_test.json",
+	"rsa_three_primes_oaep_3072_sha224_mgf1sha224_test.json",
+	"rsa_three_primes_oaep_4096_sha256_mgf1sha256_test.json",
 	"rsa_oaep_misc_test.json",
 
 	/* RsassaPkcs1Generate Tests */
-	"rsa_sig_gen_misc_test.json",
+	"rsa_pkcs1_1024_sig_gen_test.json",
+	"rsa_pkcs1_1536_sig_gen_test.json",
+	"rsa_pkcs1_2048_sig_gen_test.json",
+	"rsa_pkcs1_3072_sig_gen_test.json",
+	"rsa_pkcs1_4096_sig_gen_test.json",
 
 	/* RsaesPkcs1Decrypt Tests */
 	"rsa_pkcs1_2048_test.json",
@@ -282,7 +401,6 @@ constant test_vectors = ({
 	/* XdhPemComp Tests */
 	"x25519_pem_test.json",
 	"x448_pem_test.json",
-
 });
 
 /*
