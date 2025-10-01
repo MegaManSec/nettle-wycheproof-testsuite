@@ -99,6 +99,11 @@ bool aead_test_roundtrip(mapping test, string algorithm) {
 			return true;
 		}
 
+		if(checkFlags(err[0], "short nonce", test["flags"], "InvalidNonceSize")) {
+			DBG("SHORT NONCE SIZE");
+			return true;
+		}
+
 		if(checkFlags(err[0], "Invalid iv/nonce.", test["flags"], "InvalidNonceSize")) {
 			DBG("INVALID NONCE SIZE");
 			return true;
@@ -128,6 +133,11 @@ bool aead_test_roundtrip(mapping test, string algorithm) {
 
 		if(checkFlags(err[0], "nonce length", test["flags"], "InvalidNonceSize")) {
 			DBG("INVALID NONCE SIZE");
+			return true;
+		}
+
+		if(checkFlags(err[0], "short nonce", test["flags"], "InvalidNonceSize")) {
+			DBG("SHORT NONCE SIZE");
 			return true;
 		}
 

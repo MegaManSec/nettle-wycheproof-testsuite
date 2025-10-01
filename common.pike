@@ -114,9 +114,11 @@ mixed get_sha_function(string sha_string) {
 			sha = Crypto.SHA512_224;
 			break;
 #endif
+#if constant(Crypto.SHAKE_256)
 		case "SHAKE256":
 			sha = Crypto.SHAKE_256;
 			break;
+#endif
 		default:
 			break;
 	}

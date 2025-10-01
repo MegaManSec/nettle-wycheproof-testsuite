@@ -75,10 +75,19 @@ bool ecdsa_test(mapping test, string algorithm) {
 			return false;
 	}
 
+#if !constant(Crypto.SHAKE_128)
 	if(test["sha"] == "SHAKE128") {
 		DBG("Skipping test tcId %d due to un-supported SHA-1 function %s.", test["tcId"], test["sha"]);
 		return true;
 	}
+#endif
+#if !constant(Crypto.SHAKE_256)
+	if(test["sha"] == "SHAKE256") {
+		DBG("Skipping test tcId %d due to un-supported SHA-1 function %s.", test["tcId"], test["sha"]);
+		return true;
+	}
+#endif
+
 
 	mixed ECDSA = curve->ECDSA();
 	ECDSA->set_public_key(Gmp.mpz(key["wx"], 16), Gmp.mpz(key["wy"], 16));
